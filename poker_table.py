@@ -1,13 +1,14 @@
 from itertools import combinations
 from functools import reduce
 
+
 class PokerTable(object):
 
     def __init__(self):
 
         # 10 straight flushes, 156 - full house and four of a kind hands,
-        # 1277 - simple flushes, 10 - simple straight, 
-        # 858 - two pair and three of a kind hand,
+        # 1277 - simple flushes, 10 - simple straights, 
+        # 858 - two pair and three of a kind hands,
         # 2860 - pair hands, 1277 - high cards
         self.number_of_ranks = [10, 156, 156, 1277, 10, 858, 858, 2860, 1277]
         self.prefix_sum_of_ranks = None
@@ -16,6 +17,7 @@ class PokerTable(object):
         # numeric representations of straights that result from bit manipulation
         self.straights = [7936, 3968, 1984, 992, 496, 248, 124, 62, 31, 4111]
         self.primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
+
         self.flush_ranks = {}
         self.high_card_ranks = {}
         self.remaining_ranks = {}
@@ -120,7 +122,7 @@ class PokerTable(object):
                 pair = [comb[x] for x in range(3) if x != i]
                 pair = [pair[1], pair[0]] if pair[1] > pair[0] else [pair[0], pair[1]]
                 pair.append(comb[i])
-                two_pair_numbers.append( (tuple(pair), prod / comb[i]))
+                two_pair_numbers.append( (tuple(pair), prod / comb[i]) )
 
 
         two_pair_numbers.sort(reverse = True)
