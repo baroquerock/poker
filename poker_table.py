@@ -99,13 +99,14 @@ class PokerTable(object):
         for comb in combs:
             prod = reduce(lambda x, y: x * y, comb)
             for i in range(3):
-                three = sorted([comb[x] for x in range(3) if x != i])
+                three = sorted([comb[x] for x in range(3) if x != i], reverse=True)
                 three = [comb[i]] + three
                 three_kind_numbers.append( (three, comb[i] ** 3 * (prod / comb[i])) )
 
         three_kind_numbers.sort(reverse = True)
 
         t = self.prefix_sum_of_ranks[4] + 1
+
         for three_kind in three_kind_numbers:
             self.remaining_ranks[three_kind[1]] = t
             t += 1
